@@ -64,17 +64,17 @@ plt.axis('off')
 plt.show()
 ```
 ```python
-hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-lower_yellow = np.array([22, 93, 0])#choose the RGB values accordingly to display specific color
-upper_yellow = np.array([45, 255, 255])
-mask = cv2.inRange(hsv_img, lower_yellow, upper_yellow)
-segmented_image = cv2.bitwise_and(img, img, mask=mask)
-segmented_image_rgb = cv2.cvtColor(segmented_image, cv2.COLOR_BGR2RGB)
-plt.imshow(segmented_image_rgb)
-plt.title('Segmented Image (Yellow)')
+roi = img[280:640, 150:500]
+mask = np.zeros_like(img)
+mask[280:640, 150:500] = roi
+segmented_roi = cv2.bitwise_and(img, mask)
+segmented_roi_rgb = cv2.cvtColor(segmented_roi, cv2.COLOR_BGR2RGB)
+plt.imshow(segmented_roi_rgb)
+plt.title("Segmented ROI")
 plt.axis('off')
 plt.show()
 ```
+
 ## II)Perform handwritting detection in an image
 ```python
 def detect_handwriting(image_path):
@@ -127,7 +127,7 @@ plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
 ## Output :
 ### I)Perform ROI from an image
 ![image](https://github.com/user-attachments/assets/466a96b8-c660-468a-8177-2f845a1de6a6)
-![image](https://github.com/user-attachments/assets/6442b7bd-bde9-4f39-b7a5-cbb78388a24b)
+![image](https://github.com/user-attachments/assets/7675e832-2f17-4701-9ccd-bc0eba343c8a)
 
 ## II)Perform handwritting detection in an image
 ![image](https://github.com/user-attachments/assets/da2bc445-af1b-494e-9bef-bab664aeef8e)
